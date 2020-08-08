@@ -1,6 +1,6 @@
 # Flask Url Shortener Application
 
-It's a url shortening service web app built using Flask. It uses MySql for database and also has Redis caching.
+It's a URL shortening service web app built using Flask. It uses the base26 algorithm (derived from base62) for shortening URL, MySQL for database, and also Redis caching.
 
 ## Database Schema
 
