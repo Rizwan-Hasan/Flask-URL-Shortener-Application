@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>{% block title %}{% endblock title %}</title>
+    <meta name="description"
+          content="Short-Link is a url shortener to reduce a long link. Use our tool to shorten links and then share them."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta property="og:title" content="Short-Link - URL Shortener"/>
+    <meta property="og:url" content="{{ url_for('index', _external=True, _scheme='https') }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image"
+          content="{{ url_for('static', filename='images/short-link.png', _external=True, _scheme='https') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='gh-fork-ribbon.css') }}"/>
+</head>
+
+<body onload="AnimationLoader()">
+<div id="AnimationLoad"></div>
+
+<script>
+    let preload = document.getElementById('AnimationLoad');
+
+    function AnimationLoader() {
+        preload.style.display = 'none';
+    }
+</script>
+
+<a class="github-fork-ribbon" href="https://github.com/Rizwan-Hasan/Flask-UrlShortener-App"
+   data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub
+</a>
+
+<header>
+    {% block header %}
+    {% endblock header %}
+</header>
+
+{% block content %}
+{% endblock content %}
+
+<footer>
+    <div id="footerbox">
+        <div>© 2020 Short-Link - Tool to shorten a long link.</div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Short-Link</a></li>
+            <li>|</li>
+            <li><a href="https://github.com/Rizwan-Hasan">Rizwan Hasan</a></li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+
+</html>

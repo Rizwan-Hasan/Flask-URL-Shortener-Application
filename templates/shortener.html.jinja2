@@ -1,0 +1,53 @@
+{% extends "base.html.jinja2" %}
+
+{% block title %} Short-Link - Shortener {% endblock title %}
+
+{% block header %}
+    <script>
+        function copyToClipboard() {
+            let copyText = document.getElementById("shortenurl");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999)
+            document.execCommand("copy");
+            alert("URL Copied to Clipboard");
+        }
+    </script>
+    <div id="logo">
+        <a href="https://www.shorturl.at/" class="logo">Short URL</a>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <main>
+        <section id="content">
+            <h1>Your shortened URL</h1>
+            <p>Copy the shortened link and share it in messages, texts, posts, websites and other locations.</p>
+        </section>
+
+        <section id="urlbox">
+            <br><br>
+            <div id="formurl" style="max-width: 400px;">
+                <label for="shortenurl"></label>
+                <input id="shortenurl" type="text" value="{{ shortURL }}"/>
+                <div id="formbutton">
+                    <input type="button" onclick="copyToClipboard()" class="copy" value="Copy URL"/>
+                </div>
+            </div>
+            <div id="formurl" style="max-width: 400px; display: block;">
+                <div id="balloon" style="display: none;">URL Copied</div>
+            </div>
+            <p class="boxtextleft">Long URL: <a href="{{ longURL }}" target="_blank">{{ longURL }}</a><br>
+                Create other <a href="{{ url_for('index') }}">shortened URL</a>.
+            </p>
+        </section>
+        <section id="content">
+            <h2>Share URL</h2>
+            <div class="socialnetworkbox">
+                <p>
+                    <a class="snb snbfacebook" href="#">Facebook</a>
+                    <a class="snb snbtwitter" href="#">Twitter</a>
+                </p>
+            </div>
+        </section>
+    </main>
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends "base.html.jinja2" %}
+
+{% block title %} Short-Link - Error {% endblock title %}
+
+{% block header %}
+    <div id="top">
+        <div id="logo">
+            <a href="{{ url_for('index') }}" class="logo">Short URL</a>
+        </div>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <main>
+        <section id="content">
+            <h1>{{ error_message[0] }}</h1>
+            <p>{{ error_message[1] }}</p>
+            <p>Possible errors:</p>
+            <ul>
+                <li class="list">Check if the domain is correct</li>
+                <li class="list">Check if the site is online</li>
+                <li class="list">Check the length of the url is not too small</li>
+                <li class="list">Check the address bars and punctuation</li>
+                <li class="list">The URL may have been blocked</li>
+                <li class="list">The url may have been reported</li>
+                <li class="list">Make sure the url does not contain spam</li>
+            </ul>
+            <p><a href="{{ url_for('index') }}" class="colorbutton">Go back and try again</a></p>
+        </section>
+    </main>
+{% endblock content %}

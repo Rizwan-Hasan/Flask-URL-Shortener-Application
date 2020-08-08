@@ -1,0 +1,49 @@
+{% extends "base.html.jinja2" %}
+
+{% block title %} Short-Link - Tool to shorten a long link {% endblock title %}
+
+{% block header %}
+    <div id="logo">
+        <a href="{{ url_for('index') }}" class="logo">Short-Link</a>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <main>
+        <section id="urlbox">
+            <h1>Paste the URL to be shortened</h1>
+            <form action="{{ url_for('index') }}" method="post">
+                {{ form.hidden_tag() }}
+                <div id="formurl">
+                    {{ form.longURL(title="URL needs to start with https:// or https://") }}
+                    <div id="formbutton">
+                        {{ form.submit(type='submit', value='Shorten URL') }}
+                    </div>
+                </div>
+            </form>
+            <p class="boxtextcenter">
+                Short-Link is a free tool to shorten a URL or reduce a link.<br/>
+                Use our URL Shortener to create a shortened link making it easy to remember.
+            </p>
+        </section>
+        <div id="adbox">
+            <ins class="hstpnetworkads" style="display: none; background-color: transparent;"></ins>
+        </div>
+        <section id="content">
+            <h2>Simple and fast URL shortener!</h2>
+            <p>Short-Link allows reducing long links from <a href="https://www.facebook.com/"
+                                                             target="_blank">Facebook</a>,
+                <a href="https://www.youtube.com/" target="_blank">YouTube</a>, <a href="https://www.twitter.com/"
+                                                                                   target="_blank">Twitter</a>, <a
+                        href="https://www.linkedin.com/" target="_blank">Linkedin</a> and top sites on the Internet,
+                just
+                paste the long URL and click the Shorten URL button. On the next screen, copy the shortened URL and
+                share it
+                on websites, chat and e-mail.</p>
+            <h2>Shorten and share</h2>
+            <p>Your shortened URLs can be used in publications, advertisements, blogs, forums, e-mails, instant
+                messages,
+                and other locations. You do not have to register.</p>
+        </section>
+    </main>
+{% endblock content %}
