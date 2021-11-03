@@ -1,15 +1,15 @@
 {
-  "database": {
-    "host": "<DATABASE-HOST>",
-    "dbname": "<DATABASE-NAME>",
-    "user": "<DATABASE-USERNAME>",
-    "password": "<DATABASE-PASSWORD>"
-  },
-  "redis": {
-    "host": "<REDIS-HOST>",
-    "port": 6379,
-    "password": "<REDIS-PASSWORD>",
-    "dbNo": 0,
-    "sslStatus": false
-  }
+    "database": {
+        "host": "mysql-home-server",
+        "dbname": "<DATABASE-NAME>",
+        "user": "<DATABASE-USERNAME>",
+        "password": "<DATABASE-PASSWORD>"
+    },
+    "redis": {
+        "host": "<REDIS-HOST>",
+        "port": 6379,
+        "password": "<REDIS-PASSWORD>",
+        "dbNo": 0,
+        "sslStatus": false
+    }
 }
