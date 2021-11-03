@@ -12,7 +12,7 @@ from database import user, password, host, dbname
 class DbConnect:
     __db: SQLAlchemy
     __engine: sqlalchemy.engine.base.Engine
-    __Base: sqlalchemy.ext.declarative.api.DeclarativeMeta
+    __Base: sqlalchemy.ext.declarative.DeclarativeMeta
     __session_factory: sessionmaker
     __session: scoped_session
     # noinspection PyUnresolvedReferences
