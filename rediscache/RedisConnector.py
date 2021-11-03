@@ -10,11 +10,7 @@ class RedisConnect:
     def __init__(self, counterName: str, counter: int):
         try:
             self.__pool = redis.ConnectionPool(
-                decode_responses=True,
-                host=host,
-                port=port,
-                password=password,
-                db=dbNo
+                decode_responses=True, host=host, port=port, password=password, db=dbNo
             )
             self.__counterName: str = counterName
             self.__counter: int = counter
@@ -23,9 +19,7 @@ class RedisConnect:
             logging.error(e)
 
     def __getConnection(self):
-        return redis.Redis(
-            connection_pool=self.__pool
-        )
+        return redis.Redis(connection_pool=self.__pool)
 
     def setUrlTableObject(self, urltable):
         self.__urltable = urltable
@@ -36,7 +30,10 @@ class RedisConnect:
                 conn = self.__getConnection()
                 counter = conn.get(self.__counterName)
                 if counter is None:
-                    conn.set(self.__counterName, self.__counter + self.__urltable.getRowCount())
+                    conn.set(
+                        self.__counterName,
+                        self.__counter + self.__urltable.getRowCount(),
+                    )
                 counter = conn.incr(self.__counterName)
                 conn.close()
                 return counter
@@ -47,7 +44,7 @@ class RedisConnect:
         while True:
             try:
                 conn = self.__getConnection()
-                conn.set(f'{short_url}', f'{url}', ex=expire)
+                conn.set(f"{short_url}", f"{url}", ex=expire)
                 conn.close()
                 return True
             except Exception as e:
@@ -57,7 +54,7 @@ class RedisConnect:
         while True:
             try:
                 conn = self.__getConnection()
-                tmp = conn.get(f'{short_url}')
+                tmp = conn.get(f"{short_url}")
                 conn.close()
                 if tmp is not None:
                     return tmp
@@ -67,5 +64,5 @@ class RedisConnect:
                 logging.error(e)
 
 
-if __name__ == '__main__':
-    print('Hello World')
+if __name__ == "__main__":
+    print("Hello World")

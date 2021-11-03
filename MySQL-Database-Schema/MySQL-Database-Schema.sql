@@ -1,4 +1,6 @@
-USE URLPROJECT;
+CREATE DATABASE  IF NOT EXISTS `URL-Shortener`;
+
+USE `URL-Shortener`;
 
 DROP TABLE IF EXISTS URLTABLE;
 DROP TRIGGER IF EXISTS DATE_INSERT_AUTOMATION;
@@ -14,6 +16,7 @@ CREATE TABLE URLTABLE
 );
 
 -- Creating trigger for automating date insertion
+Delimiter ///
 CREATE TRIGGER DATE_INSERT_AUTOMATION
     BEFORE INSERT
     ON URLTABLE
@@ -27,8 +30,10 @@ BEGIN
         SIGNAL SQLSTATE '23000' set message_text = 'Date can not be in future!';
     END IF;
 END;
+///
 
 -- Creating trigger for automating date update
+Delimiter ///
 CREATE TRIGGER DATE_UPDATE_AUTOMATION
     BEFORE UPDATE
     ON URLTABLE
@@ -40,6 +45,7 @@ BEGIN
         SIGNAL SQLSTATE '23000' set message_text = 'Date can not be in future!';
     END IF;
 END;
+///
 
 -- Inserting some random values
 INSERT INTO URLTABLE (ID, URL, SHORT_URL)

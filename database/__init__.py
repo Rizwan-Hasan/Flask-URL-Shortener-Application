@@ -1,11 +1,7 @@
-import json
+import os
 
 # Database Information ↓
-
-with open('database-redis-config.json', 'r', encoding='utf-8') as file:
-    config: dict = json.load(file)['database']
-    host: str = config['host']
-    dbname: str = config['dbname']
-    user: str = config['user']
-    password: str = config['password']
-    del config
+host: str = os.environ["DB_HOST"]
+dbname: str = os.environ["DB_NAME"]
+user: str = os.environ["DB_USER"]
+password: str = os.environ["DB_PASSWD"]

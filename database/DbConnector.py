@@ -12,7 +12,7 @@ from database import user, password, host, dbname
 class DbConnect:
     __db: SQLAlchemy
     __engine: sqlalchemy.engine.base.Engine
-    __Base: sqlalchemy.ext.declarative.api.DeclarativeMeta
+    __Base: sqlalchemy.ext.declarative.DeclarativeMeta
     __session_factory: sessionmaker
     __session: scoped_session
     # noinspection PyUnresolvedReferences
@@ -20,12 +20,14 @@ class DbConnect:
 
     def __init__(self):
         # Configurations ↓
-        self.SQLALCHEMY_DATABASE_URI: str = f'mysql+pymysql://{user}:{password}@{host}/{dbname}'
+        self.SQLALCHEMY_DATABASE_URI: str = (
+            f"mysql+pymysql://{user}:{password}@{host}/{dbname}"
+        )
         self.SQLALCHEMY_POOL_SIZE: int = 20
         self.SQLALCHEMY_TRACK_MODIFICATIONS: bool = False
         self.SQLALCHEMY_ENGINE_OPTIONS: dict = {
-            'pool_pre_ping': True,
-            'pool_recycle': 1,
+            "pool_pre_ping": True,
+            "pool_recycle": 1,
         }
 
     def connect(self, app: flask.app.Flask):
@@ -52,5 +54,5 @@ class DbConnect:
         return self.__session()
 
 
-if __name__ == '__main__':
-    print('Hello World')
+if __name__ == "__main__":
+    print("Hello World")
