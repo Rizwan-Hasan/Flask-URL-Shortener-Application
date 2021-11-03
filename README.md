@@ -11,10 +11,10 @@ URL shortening web app built using Flask. It uses the base26 algorithm (derived 
 
 ## Deploying
 
-After creating database with the schema and setting up the MySQL and Redis server config, just use docker.
+Just use docker
 
 ```bash
-docker build .
+docker compose up
 ```
 
 ## Screenshot
