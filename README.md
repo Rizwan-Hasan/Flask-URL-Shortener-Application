@@ -6,9 +6,6 @@ URL shortening web app built using Flask. It uses the base26 algorithm (derived 
 
 * [Schema SQL file (need to work the app)](MySql-Database-Schema/MySql-Database-Schema.sql)
 
-## Server Configurations
-* [Configuration JSON file (will be used by app)](database-redis-config.json)
-
 ## Deploying
 
 Just use docker
