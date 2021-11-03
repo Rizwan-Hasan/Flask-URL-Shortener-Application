@@ -1,6 +1,6 @@
 {
     "database": {
-        "host": "mysql-home-server",
+        "host": "<DATABASE-HOST>",
         "dbname": "<DATABASE-NAME>",
         "user": "<DATABASE-USERNAME>",
         "password": "<DATABASE-PASSWORD>"

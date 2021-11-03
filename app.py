@@ -33,4 +33,4 @@ cache = RedisConnect(counter=Base26Counter["value"], counterName=Base26Counter["
 from routes import *
 
 if __name__ == "__main__":
-    print("Hello World")
+    app.run(host="0.0.0.0", debug=False, port=5000)

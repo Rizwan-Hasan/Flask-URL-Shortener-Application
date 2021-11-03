@@ -5,7 +5,7 @@ from app import db
 
 # UrlTable Table Model ↓
 class UrlTable(db.getBase()):
-    __tablename__ = "urltable"
+    __tablename__ = "URLTABLE"
     __table_args__ = {"autoload": True, "autoload_with": db.getEngine()}
 
 

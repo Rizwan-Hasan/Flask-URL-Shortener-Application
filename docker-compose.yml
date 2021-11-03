@@ -1,13 +1,80 @@
 version: '3.3'
 
 services:
-    database:
+    app:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        image: flask-url-shortener/app
+        container_name: url-shortener_app
+        restart: always
+        environment:
+            DB_HOST: mysql-server
+            DB_NAME: URL-Shortener
+            DB_USER: root
+            DB_PASSWD: root12345
+            REDIS_HOST: redis-cache
+            REDIS_PORT: 6379
+            REDIS_PASSWD: redis12345
+            REDIS_DB_NO: 0
+        ports:
+            - '8080:5000'
+        depends_on:
+            - mysql-server
+            - redis-cache
+        networks:
+            - url-shortener-network
+
+    mysql-server:
         build:
             context: ./docker/mysql
             dockerfile: Dockerfile
-        container_name: url-shorneter_database
+        image: flask-url-shortener/mysql-server
+        container_name: url-shortener_mysql-server
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: root12345
         ports:
             - '3306:3306'
+        volumes:
+            - mysql-server-data:/var/lib/mysql
+        networks:
+            - url-shortener-network
+
+    redis-cache:
+        build:
+            context: ./docker/redis
+            dockerfile: Dockerfile
+        image: flask-url-shortener/redis-cache
+        container_name: url-shortener_redis-cache
+        restart: always
+        volumes:
+            - redis-cache-data:/data
+        networks:
+            - url-shortener-network
+
+    # Redisinsight for Redis GUI Management
+    redisinsight:
+        image: redislabs/redisinsight:latest
+        container_name: url-shortener_redisinsight
+        restart: unless-stopped
+        ports:
+            - '8001:8001'
+        volumes:
+            - redisinsight-data:/db
+        networks:
+            - url-shortener-network
+
+volumes:
+    redis-cache-data:
+        # name: url-shortener_redis-cache
+
+    mysql-server-data:
+        # name: url-shortener_mysql-server-data
+
+    redisinsight-data:
+        # name: url-shortener_redisinsight
+
+networks:
+    url-shortener-network:
+        driver: bridge
