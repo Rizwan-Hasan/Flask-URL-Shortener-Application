@@ -34,10 +34,24 @@ services:
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: root12345
-        ports:
-            - '3306:3306'
+        # ports:
+        #     - '3306:3306'
         volumes:
             - mysql-server-data:/var/lib/mysql
+        networks:
+            - url-shortener-network
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        container_name: url-shortener_phpmyadmin
+        restart: always
+        ports:
+            - '8090:80'
+        environment:
+            PMA_HOST: mysql-server
+            PMA_USER: root
+            PMA_PASSWORD: root12345
+            PMA_ARBITRARY: 1
         networks:
             - url-shortener-network
 
