@@ -11,7 +11,7 @@ URL shortening web app built using Flask. It uses the base26 algorithm (derived 
 Just use docker
 
 ```bash
-docker compose up
+docker-compose up
 ```
 
 ## Screenshot
