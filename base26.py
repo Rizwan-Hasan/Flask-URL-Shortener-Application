@@ -7,7 +7,7 @@ End at 8031810175
 
 class Base26Converter:
     def __init__(self):
-        self.__BASE26: tuple = tuple('abcdefghijklmnopqrstuvwxyz')
+        self.__BASE26: tuple = tuple("abcdefghijklmnopqrstuvwxyz")
         self.__BASE26INDEX: dict = dict()
         for i, char in enumerate(self.__BASE26):
             self.__BASE26INDEX[char] = i
@@ -26,5 +26,6 @@ class Base26Converter:
     def encode(self, decimal: int):
         return self.__encodeToBase62(decimal)
 
-if __name__ == '__main__':
-    print('Hello World')
+
+if __name__ == "__main__":
+    print("Hello World")

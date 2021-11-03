@@ -7,9 +7,7 @@ class ShortURL:
     def __init__(self):
         self.__cacheUrlExpireTimeout: int = 300
         self.__base26 = Base26Converter()
-        cache.setUrlTableObject(
-            urltable=urltable
-        )
+        cache.setUrlTableObject(urltable=urltable)
 
     def getShortURL(self, longURL: str):
         longURL: str = longURL.strip()
@@ -18,15 +16,9 @@ class ShortURL:
             uid: int = cache.getNewCounter()
             shortURL: str = self.__base26.encode(uid)
             longURL: str = longURL.strip()
-            urltable.insertURL(
-                uid=uid,
-                long_url=longURL,
-                short_url=shortURL
-            )
+            urltable.insertURL(uid=uid, long_url=longURL, short_url=shortURL)
         cache.storeURL(
-            url=longURL,
-            short_url=shortURL,
-            expire=self.__cacheUrlExpireTimeout
+            url=longURL, short_url=shortURL, expire=self.__cacheUrlExpireTimeout
         )
         return shortURL
 
@@ -38,12 +30,10 @@ class ShortURL:
             if longURL is None:
                 return None
         cache.storeURL(
-            url=longURL,
-            short_url=short_url,
-            expire=self.__cacheUrlExpireTimeout
+            url=longURL, short_url=short_url, expire=self.__cacheUrlExpireTimeout
         )
         return longURL
 
 
-if __name__ == '__main__':
-    print('Hello World')
+if __name__ == "__main__":
+    print("Hello World")

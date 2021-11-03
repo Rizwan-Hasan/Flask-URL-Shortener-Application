@@ -5,14 +5,12 @@ from app import db
 
 # UrlTable Table Model ↓
 class UrlTable(db.getBase()):
-    __tablename__ = 'urltable'
-    __table_args__ = {
-        'autoload': True,
-        'autoload_with': db.getEngine()
-    }
+    __tablename__ = "urltable"
+    __table_args__ = {"autoload": True, "autoload_with": db.getEngine()}
 
 
 # Table Queries ↓
+
 
 def getRowCount():
     dbSession = db.getSession()
@@ -23,11 +21,9 @@ def getRowCount():
 
 def getLongURL(short_url: str):
     dbSession = db.getSession()
-    longURL: list = dbSession.query(
-        UrlTable.URL
-    ).filter(
-        UrlTable.SHORT_URL == short_url
-    ).all()
+    longURL: list = (
+        dbSession.query(UrlTable.URL).filter(UrlTable.SHORT_URL == short_url).all()
+    )
     dbSession.close()
     if longURL:
         return longURL[0][0]
@@ -37,11 +33,9 @@ def getLongURL(short_url: str):
 
 def getShortURL(long_url: str):
     dbSession = db.getSession()
-    shortURL: list = dbSession.query(
-        UrlTable.SHORT_URL
-    ).filter(
-        UrlTable.URL == long_url
-    ).all()
+    shortURL: list = (
+        dbSession.query(UrlTable.SHORT_URL).filter(UrlTable.URL == long_url).all()
+    )
     dbSession.close()
     if shortURL:
         return shortURL[0][0]
@@ -52,19 +46,15 @@ def getShortURL(long_url: str):
 def insertURL(uid: int, long_url: str, short_url: str):
     try:
         dbSession = db.getSession()
-        newRow = UrlTable(
-            ID=uid,
-            URL=long_url,
-            SHORT_URL=short_url
-        )
+        newRow = UrlTable(ID=uid, URL=long_url, SHORT_URL=short_url)
         dbSession.add(newRow)
         dbSession.commit()
         dbSession.close()
     except Exception as e:
-        logging.error(str(e.__dict__['orig']))
+        logging.error(str(e.__dict__["orig"]))
         return False
     return True
 
 
-if __name__ == '__main__':
-    print('Hello World')
+if __name__ == "__main__":
+    print("Hello World")
