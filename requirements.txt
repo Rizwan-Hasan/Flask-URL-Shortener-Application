@@ -3,7 +3,7 @@ cffi==1.15.0
 click==8.0.3
 cryptography==35.0.0
 decorator==5.1.0
-Flask==2.0.2
+Flask==2.3.2
 Flask-SQLAlchemy==2.5.1
 Flask-WTF==0.15.1
 greenlet==1.1.2
